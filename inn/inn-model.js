@@ -16,6 +16,7 @@ async function addGuest(guest){
     
 }
 
-async function removeGuest(guestName){
-    return null
+async function removeGuest(id){
+    return await db('inn').where({ id }).delete()
+  
 }

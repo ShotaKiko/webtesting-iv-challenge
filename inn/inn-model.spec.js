@@ -29,5 +29,20 @@ describe('the inn model', () => {
         })
     })
 
+    describe('removeGuest', () => {
+        afterEach( async () => {
+            await db('inn').truncate()
+        })
+
+        it(' should remove a guest from the db', async () => {
+            await db('inn').insert({ name: "Tom" })
+            await db('inn').insert({ name: "removeMe" })
+
+            await Inn.removeGuest(2)
+
+            const guestList = await db('inn')
+            expect(guestList).toHaveLength(1)
+        })
+    })
 
 })
