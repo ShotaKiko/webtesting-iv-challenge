@@ -11,7 +11,9 @@ async function fetchAll(){
 }
 
 async function addGuest(guest){
-    return null
+    const [id] = await db('inn').insert(guest)
+    return db('inn').where({ id }).first()
+    
 }
 
 async function removeGuest(guestName){
